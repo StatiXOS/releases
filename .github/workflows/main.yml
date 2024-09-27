@@ -1,6 +1,6 @@
 # main.yml
 # Default runner for 'releases' repository
-name: CI
+name: Compile StatiXOS for devices
 
 # Controls when the workflow will run
 on:
