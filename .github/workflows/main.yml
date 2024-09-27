@@ -5,13 +5,23 @@ name: Compile StatiXOS for devices
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+      inputs:
+        # Let the user decide whether to sync before compilation, or not
+        sync:
+          description: 'Sync repositories before building'
+          type: boolean
 
 jobs:
-  # Declare the 'build' job
-  build:
+  # Declare the 'sync' job
+  sync:
+    if:  ${{ inputs.sync }}
     # Set our self-hosted runner's labels
     runs-on: [self-hosted, linux, x64]
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+
+      # Execute 'sync.sh'
+      - name: Start syncing StatiXOS
+        run: ${PWD}/tools/sync.sh
