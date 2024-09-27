@@ -49,3 +49,14 @@ jobs:
       # Execute 'sync.sh'
       - name: Start syncing StatiXOS
         run: ${PWD}/tools/sync.sh
+
+      # Immediately cancel action if previous command failed
+      - if: failure()
+        run: |
+          gh run cancel ${{ github.run_id }}
+          gh run watch ${{ github.run_id }}
+
+# Set commonly used environmental variables
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
