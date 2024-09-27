@@ -11,6 +11,11 @@ on:
           description: 'Sync repositories before building'
           type: boolean
 
+        # Let the user decide whether to produce a clean build before compiling, or not
+        clean:
+          description: 'Produce a clean build'
+          type: boolean
+
         # Make the user choice between a list of devices
         device:
           description: 'Choose device to build for:'
