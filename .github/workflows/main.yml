@@ -11,10 +11,20 @@ on:
           description: 'Sync repositories before building'
           type: boolean
 
+        # Make the user choice between a list of devices
+        device:
+          description: 'Choose device to build for:'
+          required: true
+          type: choice
+          options:
+           - 'Xiaomi POCO M6 Pro 5G / Redmi 12 5G / Redmi Note 12R'
+           - 'Xiaomi SM7125 family'
+
 jobs:
   # Declare the 'sync' job
   sync:
-    if:  ${{ inputs.sync }}
+    # Only execute if 'inputs.sync' is set to 'true'
+    if: ${{ inputs.sync }}
     # Set our self-hosted runner's labels
     runs-on: [self-hosted, linux, x64]
 
