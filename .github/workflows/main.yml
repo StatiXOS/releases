@@ -20,6 +20,15 @@ on:
            - 'Xiaomi POCO M6 Pro 5G / Redmi 12 5G / Redmi Note 12R'
            - 'Xiaomi SM7125 family'
 
+        # Make the user choice between a list of package types
+        package:
+          description: 'Choose type of package to build:'
+          required: true
+          type: choice
+          options:
+           - 'Recovery-flashable (otapackage)'
+           - 'Bootloader-flashable (updatepackage)'
+
 jobs:
   # Declare the 'sync' job
   sync:
