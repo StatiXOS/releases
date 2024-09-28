@@ -10,3 +10,13 @@ case "${DEVICE}" in
     echo "DEVICE=miatoll" >> "$GITHUB_ENV"
   ;;
 esac
+
+# Select package type for ${PKG}
+case "${PACKAGE}" in
+  "Recovery-flashable (otapackage)")
+    echo "PACKAGE=otapackage" >> "$GITHUB_ENV"
+  ;;
+  "Bootloader-flashable (updatepackage)")
+    echo "PACKAGE=updatepackage" >> "$GITHUB_ENV"
+  ;;
+esac
