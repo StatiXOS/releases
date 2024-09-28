@@ -11,6 +11,19 @@ case "${DEVICE}" in
   ;;
 esac
 
+# Select package type for ${VARIANT}
+case "${BUILD_VARIANT}" in
+  "Stable (user)")
+    echo "BUILD_VARIANT=user" >> "$GITHUB_ENV"
+  ;;
+  "Debugging (userdebug)")
+    echo "BUILD_VARIANT=userdebug" >> "$GITHUB_ENV"
+  ;;
+  "Development (eng)")
+    echo "BUILD_VARIANT=eng" >> "$GITHUB_ENV"
+  ;;
+esac
+
 # Select package type for ${PKG}
 case "${PACKAGE}" in
   "Recovery-flashable (otapackage)")

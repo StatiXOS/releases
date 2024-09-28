@@ -25,6 +25,16 @@ on:
            - 'Xiaomi POCO M6 Pro 5G / Redmi 12 5G / Redmi Note 12R'
            - 'Xiaomi SM7125 family'
 
+        # Make the user choice between a list of build variant
+        variant:
+          description: 'Choose type of build variant:'
+          required: false
+          type: choice
+          options:
+           - 'Stable (user)'
+           - 'Debugging (userdebug)'
+           - 'Development (eng)'
+
         # Make the user choice between a list of package types
         package:
           description: 'Choose type of package to build:'
@@ -71,6 +81,7 @@ jobs:
           CLEAN: ${{ inputs.clean }}
           DEVICE: ${{ inputs.device }}
           PACKAGE: ${{ inputs.package }}
+          BUILD_VARIANT: ${{ inputs.variant }}
 
       # Execute 'sync.sh'
       - name: Start compiling StatiXOS
