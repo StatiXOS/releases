@@ -56,6 +56,36 @@ jobs:
           gh run cancel ${{ github.run_id }}
           gh run watch ${{ github.run_id }}
 
+  # Declare the 'build' job
+  build:
+    # Set our self-hosted runner's labels
+    runs-on: [self-hosted, linux, x64]
+    steps:
+
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      - name: Export necessary enviroment tables
+        run: |
+          case "${{ inputs.device }}" in
+            "Xiaomi POCO M6 Pro 5G / Redmi 12 5G / Redmi Note 12R")
+              echo "DEVICE=sky" >> "$GITHUB_ENV"
+            ;;
+            "Xiaomi SM7125 family")
+              echo "DEVICE=miatoll" >> "$GITHUB_ENV"
+            ;;
+          esac
+
+      # Execute 'sync.sh'
+      - name: Start compiling StatiXOS
+
+        run: |
+          # Unfortunately, we need to use 'run' in order to access '${HOME}'.
+          SCRIPT=${HOME}/stx/device/manifests/build.sh
+
+          # Execute the main script
+          ${SCRIPT} ${DEVICE}
+
 # Set commonly used environmental variables
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
