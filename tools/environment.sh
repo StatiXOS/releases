@@ -20,3 +20,11 @@ case "${PACKAGE}" in
     echo "PACKAGE=updatepackage" >> "$GITHUB_ENV"
   ;;
 esac
+
+# Set ${CLEAN} to true for 'make clean'
+if [ -n "${CLEAN}" ]; then
+    echo "CLEAN=true" >> "$GITHUB_ENV"
+else
+    # Otherwise, set it to 'false' by default
+    echo "CLEAN=false" >> "$GITHUB_ENV"
+fi
