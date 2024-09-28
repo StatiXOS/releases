@@ -66,15 +66,11 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Export necessary enviroment tables
-        run: |
-          case "${{ inputs.device }}" in
-            "Xiaomi POCO M6 Pro 5G / Redmi 12 5G / Redmi Note 12R")
-              echo "DEVICE=sky" >> "$GITHUB_ENV"
-            ;;
-            "Xiaomi SM7125 family")
-              echo "DEVICE=miatoll" >> "$GITHUB_ENV"
-            ;;
-          esac
+        run: ${PWD}/tools/environment.sh
+        env: 
+          CLEAN: ${{ inputs.clean }}
+          DEVICE: ${{ inputs.device }}
+          PACKAGE: ${{ inputs.package }}
 
       # Execute 'sync.sh'
       - name: Start compiling StatiXOS
