@@ -28,7 +28,7 @@ on:
         # Make the user choice between a list of package types
         package:
           description: 'Choose type of package to build:'
-          required: true
+          required: false
           type: choice
           options:
            - 'Recovery-flashable (otapackage)'
