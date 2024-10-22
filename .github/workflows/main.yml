@@ -88,7 +88,7 @@ jobs:
 
         run: |
           # Unfortunately, we need to use 'run' in order to access '${HOME}'.
-          SCRIPT=${HOME}/stx/device/manifests/build.sh
+          SCRIPT=${HOME}/stx/build.sh
 
           # Execute the main script
           ${SCRIPT} ${DEVICE}
